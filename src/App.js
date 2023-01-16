@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import UsersList from "./UsersList";
+import Search from "./Search";
+import { TextField, Card, CardContent } from '@mui/material';
+import {getUser} from "./apiMethods";
+import { useEffect, useState } from "react";
 
 function App() {
+
+  const [users,setUsers] = useState([]);
+  const [originalUsers,setOriginalUsers]= useState([]);
+  const api = "api/users";
+
+  useEffect(() => {
+    getUser(api)
+      .then((res) => {
+        setUsers(res.data.data);
+        setOriginalUsers(res.data.data)
+      })
+      .catch((err) => console.log(err));
+  }, [api]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+    {/* <Card>
+      <CardContent>
+        <form
+          noValidate
+          autoComplete="off"
+          onSubmit={handleSubmit}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+        </form>
+      </CardContent>
+    </Card> */}
+    <Search users={users} setUsers={setUsers} originalUsers={originalUsers} setOriginalUsers={setOriginalUsers} />
+    <UsersList users={users} setUsers={setUsers} api={api}/>
+    </>
   );
 }
 
