@@ -1,22 +1,10 @@
-import { useState, useEffect} from 'react';
-import { TextField, Card, CardContent, Button,Box, Typography } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import {deleteUser} from "./apiMethods";
+// import { useState, useEffect} from 'react';
+import { Card, CardContent, Typography } from '@mui/material';
+import DeleteUser from './DeleteUser';
 
 
-export default function UsersList({users}) {
+export default function UsersList({users,setUsers,api}) {
 
-    const[deleteId,setDeleteId] = useState("")
-
-    const handleDelete = (e,id) => {
-        e.preventDefault();
-        setDeleteId(id)
-        
-    }
-
-    useEffect(() => {
-        deleteUser()
-    },[deleteId])
 
   return (
     <>
@@ -26,13 +14,7 @@ export default function UsersList({users}) {
                     <img alt="user avatar" src={user.avatar} width="40ps"/>
                     <Typography>{user.first_name} {user.last_name}</Typography>
                     <Typography>{user.email}</Typography>
-                    <Button 
-                    variant="outlined" 
-                    startIcon={<DeleteIcon />}
-                    onClick={ e => handleDelete(e, user.id)}
-                >
-                        Delete
-                    </Button>
+                    <DeleteUser setUsers={setUsers} api={api} id={user.id} />
                 </CardContent>
             ))}
         </Card>

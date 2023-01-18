@@ -34,13 +34,13 @@ export default function Search({users,setUsers,originalUsers,setOriginalUsers}) 
             type="text"
             variant="outlined"
             placeholder='search'
-            fullWidth
+            
         >
 
         </TextField>
         <Button
             variant='contained'
-            fullWidth
+            
             color='primary'
             type='submit'
         >
