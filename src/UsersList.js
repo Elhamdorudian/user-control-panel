@@ -1,9 +1,7 @@
-// import { useState, useEffect} from 'react';
 import { Card, CardContent, Typography } from '@mui/material';
 import DeleteUser from './DeleteUser';
 
-
-export default function UsersList({users,setUsers,api}) {
+export default function UsersList({api,users,setUsers,setOriginalUsers}) {
 
 
   return (
@@ -14,7 +12,7 @@ export default function UsersList({users,setUsers,api}) {
                     <img alt="user avatar" src={user.avatar} width="40ps"/>
                     <Typography>{user.first_name} {user.last_name}</Typography>
                     <Typography>{user.email}</Typography>
-                    <DeleteUser setUsers={setUsers} api={api} id={user.id} />
+                    <DeleteUser setOriginalUsers={setOriginalUsers} api={api} id={user.id} setUsers={setUsers}/>
                 </CardContent>
             ))}
         </Card>

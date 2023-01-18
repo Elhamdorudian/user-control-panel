@@ -1,10 +1,10 @@
 import React from 'react'
 import { useState, useEffect} from 'react';
-import { Card, CardContent, Button, Typography } from '@mui/material';
+import { Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {deleteUser} from "./apiMethods";
 
-export default function DeleteUser({users,setUsers,api,id}) {
+export default function DeleteUser({api,id,setUsers,setOriginalUsers}) {
 
 
     const[deleteId,setDeleteId] = useState("")
@@ -16,9 +16,13 @@ export default function DeleteUser({users,setUsers,api,id}) {
 
     useEffect(() => {
         deleteUser(api, deleteId)
-        .then( setUsers(prevUser => prevUser.filter(user => user.id !== deleteId)))
+        .then( () => {
+            setUsers(prevUsers => prevUsers.filter(user => user.id !== deleteId));
+            setOriginalUsers(prevUsers => prevUsers.filter(user => user.id !== deleteId));
+
+        })
         .catch(err => console.log(err))
-    },[deleteId,api,setUsers])
+    },[deleteId,api,setUsers,setOriginalUsers])
 
 
   return (

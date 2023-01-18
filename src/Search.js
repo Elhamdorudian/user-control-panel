@@ -2,17 +2,17 @@ import { useState} from 'react';
 import { TextField, Card, CardContent,Button } from '@mui/material';
 
 
-export default function Search({users,setUsers,originalUsers,setOriginalUsers}) {
+export default function Search({originalUsers,setUsers}) {
 
     const [search,setSearch] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if(search.length === 0){
-            setUsers(originalUsers)
+          setUsers(originalUsers);
         }else{
-            setUsers(originalUsers);
-            setUsers((prevUsers) => prevUsers.filter(user => user.firs_name.toLowerCase().includes(search.toLowerCase())))
+          setUsers(originalUsers);
+            setUsers(prevUsers => prevUsers.filter(user => user.first_name.toLowerCase().includes(search.toLowerCase())))
             setSearch("")
         }
         
@@ -31,6 +31,7 @@ export default function Search({users,setUsers,originalUsers,setOriginalUsers}) 
             onChange={(e) => setSearch(e.target.value)}
             value={search}
             label="search"
+            name="searchField"
             type="text"
             variant="outlined"
             placeholder='search'
@@ -40,7 +41,6 @@ export default function Search({users,setUsers,originalUsers,setOriginalUsers}) 
         </TextField>
         <Button
             variant='contained'
-            
             color='primary'
             type='submit'
         >
