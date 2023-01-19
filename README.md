@@ -11,7 +11,7 @@ A user-friendly application for managing and manipulating a list of users from A
 # Getting Started
 To get started with this project, follow these steps:
 
-* Clone the repository to your local machine using git clone https://github.com/Elhamdorudian/dashboard-plans.git.
+* Clone the repository to your local machine using git clone https://github.com/Elhamdorudian/user-control-panel.git.
 
 ## Frontend:
 > `1` Navigate to the project _frontend_ project directory using cd user-control-panel.
