@@ -22,7 +22,7 @@ function App() {
   return (
 
     <>
-    <Search originalUsers={originalUsers} setUsers={setUsers} />
+    <Search originalUsers={originalUsers} setUsers={setUsers} users={users} />
     <UsersList setOriginalUsers={setOriginalUsers} api={api} users={users} setUsers={setUsers} />
     </>
   );

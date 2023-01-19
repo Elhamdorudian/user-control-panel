@@ -3,11 +3,25 @@ import { useState, useEffect} from 'react';
 import { Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {deleteUser} from "./apiMethods";
+import { ThemeProvider } from '@emotion/react';
 
+
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#2F3C7E",
+      contrastText: "#FBEAEB"
+    }
+  },
+});
 export default function DeleteUser({api,id,setUsers,setOriginalUsers}) {
 
 
     const[deleteId,setDeleteId] = useState("")
+
+    
 
     const handleDelete = (e,id) => {
         e.preventDefault();
@@ -26,14 +40,15 @@ export default function DeleteUser({api,id,setUsers,setOriginalUsers}) {
 
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
         <Button 
-            variant="outlined" 
+            sx={{height:'50px'}}
+            variant="contained" 
             startIcon={<DeleteIcon />}
             onClick={ e => handleDelete(e,id)}
-        >
+            color="primary"        >
         Delete
         </Button>
-    </>
+    </ThemeProvider>
   )
 }
